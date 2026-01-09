@@ -1,0 +1,73 @@
+# ----------------------------------------------------------------------
+# 1. Force HTTPS and Non-WWW (Best Practice for modern URLs)
+# ----------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Force HTTPS
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    
+    # Force Non-WWW
+    RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+    RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+</IfModule>
+
+# ----------------------------------------------------------------------
+# 2. Enable GZIP Compression
+# ----------------------------------------------------------------------
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+</IfModule>
+
+# ----------------------------------------------------------------------
+# 3. Enable Browser Caching
+# ----------------------------------------------------------------------
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 month"
+    ExpiresByType text/html "access plus 0 seconds"
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+</IfModule>
+
+# ----------------------------------------------------------------------
+# 4. Basic Security Headers
+# ----------------------------------------------------------------------
+<IfModule mod_headers.c>
+    Header set X-XSS-Protection "1; mode=block"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-Content-Type-Options "nosniff"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# ----------------------------------------------------------------------
+# 5. Security - Block Access to Sensitive Files
+# ----------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+    RewriteRule ^\.env$ - [F,L]
+    RewriteRule ^\.git.*$ - [F,L]
+    RewriteRule ^node_modules/.*$ - [F,L]
+    RewriteRule ^vendor/.*$ - [F,L]
+    RewriteRule ^Dockerfile$ - [F,L]
+    RewriteRule ^docker-compose.*$ - [F,L]
+    RewriteRule ^requirements.txt$ - [F,L]
+</IfModule>
+
+# ----------------------------------------------------------------------
+# 6. Disable Directory Listing
+# ----------------------------------------------------------------------
+Options -Indexes

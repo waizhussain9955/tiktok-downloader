@@ -1,0 +1,13 @@
+# robots.txt
+# Allow all search engines to crawl the site
+User-agent: *
+Allow: /
+
+# Disallow sensitive paths (if any)
+Disallow: /tests/
+Disallow: /venv/
+Disallow: /ENV/
+Disallow: /.git/
+
+# Sitemaps
+Sitemap: https://example.com/sitemap.xml
