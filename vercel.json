@@ -1,45 +1,47 @@
 {
     "version": 2,
+    "builds": [
+        {
+            "src": "api/index.py",
+            "use": "@vercel/python"
+        }
+    ],
     "rewrites": [
         {
             "source": "/api/(.*)",
-            "destination": "/api/index.py"
+            "destination": "api/index.py"
         },
         {
             "source": "/static/(.*)",
-            "destination": "/static/$1"
+            "destination": "public/static/$1"
         },
         {
             "source": "/favicon.ico",
-            "destination": "/static/img/favicon.ico"
+            "destination": "public/static/img/favicon.ico"
         },
         {
             "source": "/sitemap.xml",
-            "destination": "/sitemap.xml"
+            "destination": "public/sitemap.xml"
         },
         {
             "source": "/robots.txt",
-            "destination": "/robots.txt"
+            "destination": "public/robots.txt"
         },
         {
             "source": "/blog.html",
-            "destination": "/static/blog.html"
+            "destination": "public/static/blog.html"
         },
         {
             "source": "/tiktok-video-downloader-(.*).html",
-            "destination": "/static/tiktok-video-downloader-$1.html"
+            "destination": "public/static/tiktok-video-downloader-$1.html"
         },
         {
             "source": "/download-tiktok-videos-by-username.html",
-            "destination": "/static/download-tiktok-videos-by-username.html"
-        },
-        {
-            "source": "/(.*).html",
-            "destination": "/static/$1.html"
+            "destination": "public/static/download-tiktok-videos-by-username.html"
         },
         {
             "source": "/",
-            "destination": "/static/index.html"
+            "destination": "public/static/index.html"
         }
     ]
 }
