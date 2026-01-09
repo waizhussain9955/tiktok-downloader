@@ -12,14 +12,6 @@
             "destination": "api/index.py"
         },
         {
-            "source": "/static/(.*)",
-            "destination": "public/static/$1"
-        },
-        {
-            "source": "/favicon.ico",
-            "destination": "public/static/img/favicon.ico"
-        },
-        {
             "source": "/sitemap.xml",
             "destination": "public/sitemap.xml"
         },
@@ -28,20 +20,24 @@
             "destination": "public/robots.txt"
         },
         {
-            "source": "/blog.html",
-            "destination": "public/static/blog.html"
+            "source": "/.htaccess",
+            "destination": "public/.htaccess"
         },
         {
-            "source": "/tiktok-video-downloader-(.*).html",
-            "destination": "public/static/tiktok-video-downloader-$1.html"
-        },
-        {
-            "source": "/download-tiktok-videos-by-username.html",
-            "destination": "public/static/download-tiktok-videos-by-username.html"
+            "source": "/static/(.*)",
+            "destination": "public/static/$1"
         },
         {
             "source": "/",
             "destination": "public/static/index.html"
+        },
+        {
+            "source": "/(.*).html",
+            "destination": "public/static/$1.html"
+        },
+        {
+            "source": "/(.*)",
+            "destination": "public/static/$1"
         }
     ]
 }
