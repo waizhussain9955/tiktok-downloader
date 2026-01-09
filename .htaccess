@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------
-# 1. Force HTTPS and Non-WWW (Best Practice for modern URLs)
+# 1. Force HTTPS and Non-WWW (Preferred Best Practice for SEO Consistency)
 # ----------------------------------------------------------------------
 <IfModule mod_rewrite.c>
     RewriteEngine On
@@ -29,7 +29,7 @@
 </IfModule>
 
 # ----------------------------------------------------------------------
-# 3. Enable Browser Caching
+# 3. Enable Browser Caching (Leverage Browser Caching)
 # ----------------------------------------------------------------------
 <IfModule mod_expires.c>
     ExpiresActive On
@@ -38,14 +38,10 @@
     ExpiresByType text/css "access plus 1 year"
     ExpiresByType application/javascript "access plus 1 year"
     ExpiresByType image/x-icon "access plus 1 year"
-    ExpiresByType image/gif "access plus 1 month"
-    ExpiresByType image/png "access plus 1 month"
-    ExpiresByType image/jpg "access plus 1 month"
-    ExpiresByType image/jpeg "access plus 1 month"
 </IfModule>
 
 # ----------------------------------------------------------------------
-# 4. Basic Security Headers
+# 4. Security Headers
 # ----------------------------------------------------------------------
 <IfModule mod_headers.c>
     Header set X-XSS-Protection "1; mode=block"
@@ -55,19 +51,13 @@
 </IfModule>
 
 # ----------------------------------------------------------------------
-# 5. Security - Block Access to Sensitive Files
+# 5. Disable Directory Listing & Block Sensitive Files
 # ----------------------------------------------------------------------
+Options -Indexes
+
 <IfModule mod_rewrite.c>
     RewriteRule ^\.env$ - [F,L]
     RewriteRule ^\.git.*$ - [F,L]
     RewriteRule ^node_modules/.*$ - [F,L]
     RewriteRule ^vendor/.*$ - [F,L]
-    RewriteRule ^Dockerfile$ - [F,L]
-    RewriteRule ^docker-compose.*$ - [F,L]
-    RewriteRule ^requirements.txt$ - [F,L]
 </IfModule>
-
-# ----------------------------------------------------------------------
-# 6. Disable Directory Listing
-# ----------------------------------------------------------------------
-Options -Indexes

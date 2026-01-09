@@ -1,60 +1,65 @@
-# TikTok Downloader API
+# 🌐 TikTok Downloader - Resilient SEO & Server Configuration
 
-A high-performance, production-ready FastAPI backend for extracting TikTok video data using public info only.
+## 🔹 Project Overview
+This project is a high-performance, resilient TikTok video downloader built for stability and speed. Beyond the core extraction logic, this repository contains essential server-side and SEO configuration files (.htaccess, sitemap.xml, and robots.txt) to ensure the application is secure, fast, and highly visible to search engines.
 
-## 🚀 Features
-- **No API Key Required**: Uses public data extraction.
-- **Fast**: Built with FastAPI and `httpx` (fully async).
-- **Metadata Rich**: Returns author, caption, music, and stats.
-- **Cache-Enabled**: Includes an in-memory cache, Redis-ready.
-- **Dockerized**: One-click deployment with Docker.
+### Why these files are crucial:
+*   **.htaccess**: Manages how your server handles requests, ensuring security and speed.
+*   **sitemap.xml**: Acts as a roadmap for Google to index your pages correctly.
+*   **robots.txt**: Instructs search engines on which parts of your site to crawl.
 
-## 🛠️ Tech Stack
-- **Framework**: FastAPI
-- **Client**: httpx (Async)
-- **Cache**: In-memory (Default) / Redis
-- **Container**: Docker + Docker Compose
+---
 
-## 📦 Installation
+## 🔹 Files Explanation
 
-### Local Setup
-1. Clone the repository
-2. Create a virtual environment: `python -m venv venv`
-3. Activate it: `source venv/bin/activate` (or `venv\Scripts\activate` on Windows)
-4. Install dependencies: `pip install -r requirements.txt`
-5. Run the server: `uvicorn app.main:app --reload`
+### 🛠 .htaccess (Security + Performance)
+This file acts as the primary gatekeeper for your Apache server.
+*   **Performance**: Force-enables **GZIP compression** and **Browser Caching** to reduce load times by up to 70%.
+*   **Security**: Implements strict headers to prevent XSS and Frame injection, and blocks unauthorized access to sensitive system files like `.env` or `.git`.
+*   **Consistency**: Automatically redirects all traffic to **HTTPS** and **Non-WWW** to prevent duplicate content issues.
 
-### Running with Docker
-```bash
-docker-compose up -d --build
-```
+### 🔍 sitemap.xml (SEO Indexing)
+A Google-standard XML file that helps search engine bots find and index your homepage, about page, and service sections efficiently. It ensures your most important content is discovered quickly.
 
-## 🔌 API Reference
+### 🤖 robots.txt (Crawler Control)
+This file sets the boundaries for search engines. It allows Google to crawl your public pages while strictly forbidding access to your private backend folders (like `venv`, `tests`, or `config`).
 
-### POST `/api/v1/tiktok/download`
-**Request Body:**
-```json
-{
-  "url": "https://www.tiktok.com/@username/video/123456789"
-}
-```
+---
 
-**Response:**
-```json
-{
-  "status": "success",
-  "video": {
-    "video_id": "123456789",
-    "mp4_url": "https://...",
-    "author": "username",
-    "caption": "Video description",
-    "music": "Music title",
-    "play_count": 1000,
-    ...
-  },
-  "cached": false
-}
-```
+## 🔹 Installation / Usage (Shared Hosting)
 
-## 🛡️ License
-MIT License - Extracts public data only. No private API usage.
+Follow these steps to deploy these configuration files to your Shared Hosting (Apache):
+
+1.  **Login to cPanel/FTP**: Access your hosting file manager or use an FTP client (like FileZilla).
+2.  **Locate Root Directory**: Navigate to your website's root folder (usually `public_html`).
+3.  **Upload Files**:
+    *   Upload `.htaccess` directly to `public_html`. (Make sure "Show Hidden Files" is enabled in your file manager).
+    *   Upload `sitemap.xml` and `robots.txt` to the same folder.
+4.  **Verify**: Visit `https://yourdomain.com/sitemap.xml` and `https://yourdomain.com/robots.txt` to confirm they are active.
+
+---
+
+## 🔹 SEO & Performance Benefits
+
+*   **Google Ranking**: Properly indexed sitemaps and a clean `robots.txt` signal to Google that your site is professional and trustworthy.
+*   **Page Speed**: GZIP compression significantly improves your **Core Web Vitals** scores, which is a key ranking factor.
+*   **Security**: Hardened headers and file blocking protect your site from common automated bot attacks and data leaks.
+
+---
+
+## 🔹 Need These Files or a Complete Website Setup?
+
+Are you looking for a professional SEO setup, custom deployment, or a fully optimized web application built from scratch? 
+
+I provide premium services including:
+*   ✅ Custom SEO Configuration
+*   ✅ Fast Server Deployment & Optimization
+*   ✅ Full-stack Web Development (FastAPI, React, Modern CSS)
+*   ✅ CDN & Security Hardening
+
+### 📱 Contact for Purchase or Customization
+*   **Name**: Waiz
+*   **WhatsApp**: [📱 Contact on WhatsApp for purchase or customization](https://wa.me/92XXXXXXXXXX) (Replace with: +92XXXXXXXXXX)
+
+---
+*Built with professional expertise and modern standards.*
