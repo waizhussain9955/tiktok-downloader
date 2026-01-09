@@ -39,6 +39,118 @@
 
     <!-- CSS Link -->
     <link rel="stylesheet" href="/static/css/style.css?v=1.2">
+
+    <style>
+        /* Mobile Menu Toggle Styles */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 30px;
+            height: 3px;
+            background-color: var(--text-white);
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: var(--bg-dark);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                z-index: 1000;
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+                border-left: 1px solid var(--border);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(7px, 7px);
+            }
+
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(6px, -6px);
+            }
+        }
+
+        /* Footer New Styles */
+        .site-footer {
+            padding: 5rem 0 3rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid var(--border);
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 2rem;
+        }
+
+        .footer-owner {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            color: var(--text-white);
+        }
+
+        .footer-socials {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .social-icon {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .social-icon:hover {
+            color: var(--primary);
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        .footer-bottom-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 1rem;
+        }
+
+        @media (min-width: 769px) {
+            .footer-content {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -56,10 +168,19 @@
                     <i class="fab fa-tiktok"></i>
                     <span>T-Downloader</span>
                 </div>
-                <div class="nav-links">
-                    <a href="#how-to">How to Use</a>
-                    <a href="#features">Features</a>
-                    <a href="#faq">FAQ</a>
+
+                <div class="menu-toggle" id="mobile-menu-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="nav-links" id="nav-menu">
+                    <a href="/" class="nav-link active">Home</a>
+                    <a href="#how-to" class="nav-link">How to Use</a>
+                    <a href="#features" class="nav-link">Features</a>
+                    <a href="#faq" class="nav-link">FAQ</a>
+                    <a href="/blog.html" class="nav-link">Blog</a>
                 </div>
             </div>
         </nav>
@@ -150,7 +271,7 @@
                             downloader online tool.</p>
                     </div>
                     <div class="feature-card">
-                        <i class="fas fa-bolt"></i>
+                        <i class="fas fa-hv"></i>
                         <h3>HD & 4K Quality</h3>
                         <p>Download videos in HD TikTok video downloader quality. We support Full HD and 4K resolutions
                             when available.</p>
@@ -265,14 +386,50 @@
 
     </main>
 
-    <footer class="footer">
+    <footer class="site-footer">
         <div class="container">
-            <p>&copy; 2026 Tik-TokDownloader.xyz. All rights reserved.</p>
-            <p class="footer-note">Free TikTok Video Downloader – No Watermark – HD Quality</p>
+            <div class="footer-content">
+                <div class="footer-left">
+                    <p class="footer-owner">© 2026 — Built & Managed by Waiz</p>
+                    <p class="footer-bottom-text">Tik-TokDownloader.xyz — No Watermark — HD Quality</p>
+                </div>
+                <div class="footer-socials">
+                    <a href="https://facebook.com/" class="social-icon" target="_blank" aria-label="Facebook"><i
+                            class="fab fa-facebook"></i></a>
+                    <a href="https://instagram.com/" class="social-icon" target="_blank" aria-label="Instagram"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com/" class="social-icon" target="_blank" aria-label="Twitter"><i
+                            class="fab fa-x-twitter"></i></a>
+                    <a href="https://youtube.com/" class="social-icon" target="_blank" aria-label="YouTube"><i
+                            class="fab fa-youtube"></i></a>
+                    <a href="https://linkedin.com/" class="social-icon" target="_blank" aria-label="LinkedIn"><i
+                            class="fab fa-linkedin"></i></a>
+                    <a href="https://wa.me/92XXXXXXXXXX" class="social-icon" target="_blank" aria-label="WhatsApp"><i
+                            class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
         </div>
     </footer>
 
     <script src="/static/js/main.js?v=1.2"></script>
+    <script>
+        // Mobile Menu Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuBtn.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 
 </html>
