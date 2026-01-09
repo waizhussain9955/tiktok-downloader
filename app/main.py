@@ -32,16 +32,6 @@ app.add_middleware(
 # Include API routes
 app.include_router(router, prefix=settings.api_prefix)
 
-@app.get("/")
-async def read_index():
-    """Serve the frontend index.html fallback."""
-    try:
-        if os.path.exists("public/static/index.html"):
-            return FileResponse("public/static/index.html")
-        return {"status": "running", "message": "API is active. Frontend should be served by Vercel static router."}
-    except Exception as e:
-        return {"status": "error", "message": str(e)}
-
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)

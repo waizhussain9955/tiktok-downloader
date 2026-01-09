@@ -12,6 +12,10 @@
             "destination": "api/index.py"
         },
         {
+            "source": "/static/(.*)",
+            "destination": "public/static/$1"
+        },
+        {
             "source": "/sitemap.xml",
             "destination": "public/sitemap.xml"
         },
@@ -20,24 +24,36 @@
             "destination": "public/robots.txt"
         },
         {
-            "source": "/static/(.*)",
-            "destination": "public/static/$1"
-        },
-        {
             "source": "/favicon.ico",
             "destination": "public/static/img/favicon.ico"
         },
         {
-            "source": "/(.*).html",
-            "destination": "public/static/$1.html"
+            "source": "/blog.html",
+            "destination": "public/static/blog.html"
+        },
+        {
+            "source": "/tiktok-video-downloader-apk-android.html",
+            "destination": "public/static/tiktok-video-downloader-apk-android.html"
+        },
+        {
+            "source": "/tiktok-video-downloader-4k-hd.html",
+            "destination": "public/static/tiktok-video-downloader-4k-hd.html"
+        },
+        {
+            "source": "/tiktok-video-downloader-for-pc.html",
+            "destination": "public/static/tiktok-video-downloader-for-pc.html"
+        },
+        {
+            "source": "/tiktok-video-downloader-iphone-ios.html",
+            "destination": "public/static/tiktok-video-downloader-iphone-ios.html"
+        },
+        {
+            "source": "/download-tiktok-videos-by-username.html",
+            "destination": "public/static/download-tiktok-videos-by-username.html"
         },
         {
             "source": "/",
             "destination": "public/static/index.html"
-        },
-        {
-            "source": "/(.*)",
-            "destination": "api/index.py"
         }
     ]
 }
