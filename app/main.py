@@ -32,6 +32,33 @@ app.add_middleware(
 # Include API routes
 app.include_router(router, prefix=settings.api_prefix)
 
+# Mount static directories
+if os.path.exists("css"):
+    app.mount("/css", StaticFiles(directory="css"), name="css")
+if os.path.exists("js"):
+    app.mount("/js", StaticFiles(directory="js"), name="js")
+if os.path.exists("img"):
+    app.mount("/img", StaticFiles(directory="img"), name="img")
+
+@app.get("/")
+async def read_index():
+    return FileResponse("index.html")
+
+@app.get("/{page}.html")
+async def read_page(page: str):
+    file_path = f"{page}.html"
+    if os.path.exists(file_path):
+        return FileResponse(file_path)
+    return {"detail": "Not Found"}
+
+@app.get("/robots.txt")
+async def read_robots():
+    return FileResponse("robots.txt")
+
+@app.get("/sitemap.xml")
+async def read_sitemap():
+    return FileResponse("sitemap.xml")
+
 # Health check at the root of the FastAPI app
 @app.get("/api/health")
 @app.get("/api/v1/health")
