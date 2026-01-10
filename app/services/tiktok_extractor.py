@@ -65,9 +65,7 @@ class TikTokExtractor:
                 video_data['cookies'] = cookies # Add cookies to data
                 return video_data
             except Exception as e:
-                with open("last_page.html", "w", encoding="utf-8") as f:
-                    f.write(html_content)
-                logger.error(f"Extraction failed. HTML saved to last_page.html for debugging.")
+                logger.error(f"Extraction failed: {str(e)}")
                 raise e
             
         except httpx.HTTPStatusError as e:
@@ -133,8 +131,6 @@ class TikTokExtractor:
             # WAF Check
             if "SlardarWAF" in content or "Please wait..." in content and len(content) < 5000:
                 logger.error("SlardarWAF challenge detected in HTML")
-                # We save for debug to help identifying patterns
-                with open("waf_block.html", "w", encoding="utf-8") as f: f.write(content)
                 raise ValueError("Anti-bot protection detected. Try again in a few minutes.")
 
             if content.startswith('\x1f\x8b') or content.startswith('\x00'):
