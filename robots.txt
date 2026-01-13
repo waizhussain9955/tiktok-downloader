@@ -1,11 +1,3 @@
 User-agent: *
 Allow: /
-Disallow: /api/
-Disallow: /app/
-Disallow: /tests/
-Disallow: /venv/
-Disallow: /.git/
-Disallow: /admin/
-Disallow: /config/
-
 Sitemap: https://tik-tokdownloader.xyz/sitemap.xml
