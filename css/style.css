@@ -274,10 +274,45 @@ body::after {
     font-size: 1.1rem;
 }
 
+
 .theme-btn:hover {
     background: var(--card-bg);
     transform: rotate(15deg);
 }
+
+.language-selector {
+    position: relative;
+    margin-left: 1rem;
+}
+
+.lang-btn {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    color: var(--text-white);
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-family: var(--font-main);
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.lang-btn:hover {
+    background: var(--card-bg);
+    border-color: var(--primary);
+}
+
+.lang-btn option {
+    background: var(--bg-dark);
+    color: var(--text-white);
+    padding: 10px;
+}
+
 
 /* Hero Section */
 .hero {
@@ -967,5 +1002,37 @@ body::after {
         width: 50px;
         height: 50px;
         font-size: 1.4rem;
+    }
+}
+
+/* RTL Support */
+[dir="rtl"] .language-selector {
+    margin-left: 0;
+    margin-right: 1rem;
+}
+
+[dir="rtl"] .input-icon {
+    padding-left: 0;
+    padding-right: 1.2rem;
+}
+
+[lang="ur"] {
+    font-family: 'Tahoma', 'Arial', sans-serif;
+    line-height: 1.8;
+}
+
+[dir="rtl"] .intro-content {
+    text-align: right;
+}
+
+[dir="rtl"] .footer-content {
+    text-align: right;
+}
+
+@media (min-width: 769px) {
+    [dir="rtl"] .footer-content {
+        text-align: right;
+        flex-direction: row-reverse;
+        /* Flip footer layout */
     }
 }

@@ -10,6 +10,54 @@ document.addEventListener('DOMContentLoaded', () => {
     const navMenu = document.getElementById('nav-menu');
     const body = document.body;
 
+    // Language Logic
+    const languageSelect = document.getElementById('language-select');
+    const savedLang = localStorage.getItem('language') || 'en';
+
+    if (languageSelect) {
+        languageSelect.value = savedLang;
+        languageSelect.addEventListener('change', (e) => {
+            setLanguage(e.target.value);
+        });
+    }
+
+    // Initialize Language
+    setLanguage(savedLang);
+
+    function setLanguage(lang) {
+        if (typeof translations === 'undefined' || !translations[lang]) return;
+
+        // Update texts
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            if (translations[lang][key]) {
+                element.innerHTML = translations[lang][key];
+            }
+        });
+
+        // Update placeholders
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+            const key = element.getAttribute('data-i18n-placeholder');
+            if (translations[lang][key]) {
+                element.placeholder = translations[lang][key];
+            }
+        });
+
+        // Handle RTL
+        if (lang === 'ur') {
+            document.documentElement.setAttribute('dir', 'rtl');
+            document.documentElement.lang = 'ur';
+            body.classList.add('rtl');
+        } else {
+            document.documentElement.setAttribute('dir', 'ltr');
+            document.documentElement.lang = lang;
+            body.classList.remove('rtl');
+        }
+
+        // Save preference
+        localStorage.setItem('language', lang);
+    }
+
     // Theme Toggle Functionality (Run this first to avoid FOUC)
     const currentTheme = localStorage.getItem('theme') || 'dark';
     document.documentElement.setAttribute('data-theme', currentTheme);
