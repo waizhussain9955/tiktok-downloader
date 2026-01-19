@@ -309,12 +309,25 @@
     </footer>
     <script src="/js/main.js?v=1.2" defer></script>
     <!-- Google tag (gtag.js) - Moved to bottom for performance -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SVDCDJZ6CM"></script>
+    
+    
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-SVDCDJZ6CM');
+        function loadGTag() {
+            var script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-SVDCDJZ6CM';
+            document.body.appendChild(script);
+            script.onload = function() {
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-SVDCDJZ6CM');
+            };
+        }
+        window.addEventListener('load', function() {
+            setTimeout(loadGTag, 3000); // Wait 3 seconds after load to initialize GTag
+        });
     </script>
+
 </body>
 </html>
